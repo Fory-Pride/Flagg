@@ -1,3 +1,4 @@
+"""
 alert_server.py
 Serveur Flask local qui reçoit les alertes des deux moniteurs
 et les affiche sur une interface web en temps réel (SSE).
