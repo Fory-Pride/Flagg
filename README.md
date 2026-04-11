@@ -30,47 +30,32 @@ pip install flask watchdog PyQt6 flask-cors requests psutil
 
 ---
 
-## Lancement (3 terminaux en administrateur)
+## Lancement (utiliser Launcher.bat pour la version portable et Install.bat pour le client)
 
-**Terminal 1 — serveur web d'alertes**
-```bash
-python alert_server.py
-```
-Puis ouvre http://localhost:5000 dans ton navigateur.
-
-**Terminal 2 — surveillance des fichiers**
-```bash
-python cookie_file_monitor.py
-```
-
-**Terminal 3 — surveillance réseau**
-```bash
-python network_exfil_monitor.py
-```
-
-> ⚠️ Les terminaux 2 et 3 doivent être lancés **en tant qu'administrateur**
+> ⚠️ Les fichier Launcher.bat et Install.bat doivent être lancés **en tant qu'administrateur**
 > (clic droit → "Exécuter en tant qu'administrateur").
 
----
+**Terminal 1 — serveur web d'alertes**
+- Reçoit les alertes des deux scripts via HTTP POST
+- Les affiche en temps réel via Server-Sent Events (SSE)
+- Filtres par sévérité (HIGH / MEDIUM / INFO) et par type
+- Hover sur une alerte pour voir les détails JSON complets
 
-## Ce que chaque script détecte
+### LE NAVIGATEUR PEUX ETRE FERMER APRES LE LANCEMENT DU SERVEUR LA VERSION CLIENT.
 
-### cookie_file_monitor.py — Accès aux fichiers
+**Terminal 2 — surveillance des fichiers**
 - Surveille les fichiers de cookies de Chrome, Firefox, Edge, Discord
 - Alerte si un processus **autre qu'un navigateur** lit ou modifie ces fichiers
 - Niveau HIGH si le processus est non-légitime
 
-### network_exfil_monitor.py — Trafic réseau
+**Terminal 3 — surveillance réseau**
 - Scanne toutes les connexions sortantes actives
 - Alerte si un processus non-navigateur se connecte à une IP externe
 - Détecte les connexions à haute fréquence (> 10/min vers le même endpoint)
 - Signale les ports non-standard (pas 80/443)
 
-### alert_server.py — Interface web
-- Reçoit les alertes des deux scripts via HTTP POST
-- Les affiche en temps réel via Server-Sent Events (SSE)
-- Filtres par sévérité (HIGH / MEDIUM / INFO) et par type
-- Hover sur une alerte pour voir les détails JSON complets
+> ⚠️ Les terminaux 2 et 3 doivent être lancés **en tant qu'administrateur**
+> (clic droit → "Exécuter en tant qu'administrateur").
 
 ---
 
