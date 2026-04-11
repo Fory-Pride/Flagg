@@ -23,8 +23,9 @@ Télécharge sur https://python.org
 
 ### 2. Dépendances
 
+Les dependances sont installer par : install.bat ou par 
 ```bash
-pip install watchdog psutil requests flask flask-cors
+pip install flask watchdog PyQt6 flask-cors requests psutil
 ```
 
 ---
